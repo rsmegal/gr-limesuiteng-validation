@@ -1,0 +1,61 @@
+
+LimeSuiteNG :info: version: 0.3.0-gd337d750 build 2025-04-15
+SDRDeviceManager :info: Connecting device: "LimeSDR XTRX, media=PCIe, addr=/dev/limepcie0, serial=000000000e5dd8a2"
+sdrdevice_source[LimeSDR XTRX] :info: set_lo_frequency 800000000.000000
+sdrdevice_source[LimeSDR XTRX] :info: set_antenna auto
+sdrdevice_source[LimeSDR XTRX] :info: auto selected antenna: LNAL
+sdrdevice_source[LimeSDR XTRX] :info: set_lpf_bandwidth 5000000.000000
+sdrdevice_source[LimeSDR XTRX] :info: set_antenna LNAW
+sdrdevice_source[LimeSDR XTRX] :info: set_gain_generic 6.000000
+sdrdevice_source[LimeSDR XTRX] :info: set_gain_generic gain range: -12.000000:61.000000
+sdrdevice_source[LimeSDR XTRX] :info: set_nco_frequency 0.000000
+SDRDeviceManager :info: Connecting device: "LimeSDR-USB, addr=1d50:6108, serial=0009081C05C4212E"
+sdrdevice_sink[LimeSDR-USB] :info: set_lo_frequency 800000000.000000
+sdrdevice_sink[LimeSDR-USB] :info: set_antenna auto
+sdrdevice_sink[LimeSDR-USB] :info: auto selected antenna: Band1
+sdrdevice_sink[LimeSDR-USB] :info: set_lpf_bandwidth 5000000.000000
+sdrdevice_sink[LimeSDR-USB] :info: set_antenna auto
+sdrdevice_sink[LimeSDR-USB] :info: auto selected antenna: Band1
+sdrdevice_sink[LimeSDR-USB] :info: set_gain_generic 10.000000
+sdrdevice_sink[LimeSDR-USB] :info: set_gain_generic gain range: 0.000000:52.000000
+sdrdevice_sink[LimeSDR-USB] :info: set_nco_frequency 0.000000
+LimeSuiteNG :warning: lms7002m_set_rx_lpf: modifying G_PGA_RBB 0 -> 12
+LimeSuiteNG :warning: lms7002m_set_tx_lpf: requested bandwidth(5000000), set to 5000000.
+LimeSuiteNG :info: Sampling rate set(5.000 MHz): CGEN:640.000 MHz, Decim: 2^5, Interp: 2^5
+LimeSuiteNG :info: Sampling rate set(5.000 MHz): CGEN:640.000 MHz, Decim: 2^5, Interp: 2^5
+sdrdevice_sink[LimeSDR-USB] :info: Device configured and ready.
+sdrdevice_source[LimeSDR XTRX] :info: Device configured and ready.
+sdrdevice_source[LimeSDR XTRX] :info: RFStream Start()
+sdrdevice_sink[LimeSDR-USB] :info: RFStream Start()
+sdrdevice_sink[LimeSDR-USB] :info: set_gain_generic 11.000000
+sdrdevice_sink[LimeSDR-USB] :info: set_gain_generic gain range: 0.000000:52.000000
+sdrdevice_sink[LimeSDR-USB] :info: set_gain_generic 12.000000
+sdrdevice_sink[LimeSDR-USB] :info: set_gain_generic gain range: 0.000000:52.000000
+sdrdevice_sink[LimeSDR-USB] :info: set_gain_generic 13.000000
+sdrdevice_sink[LimeSDR-USB] :info: set_gain_generic gain range: 0.000000:52.000000
+sdrdevice_sink[LimeSDR-USB] :info: set_gain_generic 14.000000
+sdrdevice_sink[LimeSDR-USB] :info: set_gain_generic gain range: 0.000000:52.000000
+sdrdevice_sink[LimeSDR-USB] :info: set_gain_generic 15.000000
+sdrdevice_sink[LimeSDR-USB] :info: set_gain_generic gain range: 0.000000:52.000000
+sdrdevice_sink[LimeSDR-USB] :info: set_gain_generic 16.000000
+sdrdevice_sink[LimeSDR-USB] :info: set_gain_generic gain range: 0.000000:52.000000
+sdrdevice_sink[LimeSDR-USB] :info: set_gain_generic 17.000000
+sdrdevice_sink[LimeSDR-USB] :info: set_gain_generic gain range: 0.000000:52.000000
+sdrdevice_sink[LimeSDR-USB] :info: set_gain_generic 18.000000
+sdrdevice_sink[LimeSDR-USB] :info: set_gain_generic gain range: 0.000000:52.000000
+sdrdevice_sink[LimeSDR-USB] :info: set_gain_generic 19.000000
+sdrdevice_sink[LimeSDR-USB] :info: set_gain_generic gain range: 0.000000:52.000000
+sdrdevice_sink[LimeSDR-USB] :info: set_gain_generic 20.000000
+sdrdevice_sink[LimeSDR-USB] :info: set_gain_generic gain range: 0.000000:52.000000
+sdrdevice_sink[LimeSDR-USB] :info: set_gain_generic 21.000000
+sdrdevice_sink[LimeSDR-USB] :info: set_gain_generic gain range: 0.000000:52.000000
+sdrdevice_sink[LimeSDR-USB] :info: set_gain_generic 22.000000
+sdrdevice_sink[LimeSDR-USB] :info: set_gain_generic gain range: 0.000000:52.000000
+sdrdevice_sink[LimeSDR-USB] :info: set_gain_generic 23.000000
+sdrdevice_sink[LimeSDR-USB] :info: set_gain_generic gain range: 0.000000:52.000000
+sdrdevice_sink[LimeSDR-USB] :info: set_gain_generic 24.000000
+sdrdevice_sink[LimeSDR-USB] :info: set_gain_generic gain range: 0.000000:52.000000
+sdrdevice_sink[LimeSDR-USB] :info: set_gain_generic 25.000000
+sdrdevice_sink[LimeSDR-USB] :info: set_gain_generic gain range: 0.000000:52.000000
+
+>>> Done
