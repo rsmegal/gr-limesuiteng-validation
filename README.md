@@ -1,2 +1,2 @@
 # gr-limesuiteng-validation
-Testing and validation of GRC LimeSDR block.
+Testing and validation of GRC LimeSDR blocks.
