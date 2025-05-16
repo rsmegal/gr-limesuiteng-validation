@@ -1,0 +1,826 @@
+options:
+  parameters:
+    author: ''
+    catch_exceptions: 'True'
+    category: '[GRC Hier Blocks]'
+    cmake_opt: ''
+    comment: ''
+    copyright: ''
+    description: Test USB and XTRX devices in a Tx-Rx connection.
+    gen_cmake: 'On'
+    gen_linking: dynamic
+    generate_options: qt_gui
+    hier_block_src_path: '.:'
+    id: TxRx_loop
+    max_nouts: '0'
+    output_language: python
+    placement: (0,0)
+    qt_qss_theme: ''
+    realtime_scheduling: ''
+    run: 'True'
+    run_command: '{python} -u {filename}'
+    run_options: prompt
+    sizing_mode: fixed
+    thread_safe_setters: ''
+    title: USB and XTRX device TxRx loop
+    window_size: (1000,1000)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 8]
+    rotation: 0
+    state: enabled
+
+blocks:
+- name: LPF
+  id: variable
+  parameters:
+    comment: ''
+    value: samp_rate
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [200, 88.0]
+    rotation: 0
+    state: enabled
+- name: NGsink
+  id: variable_qtgui_chooser
+  parameters:
+    comment: ''
+    gui_hint: 2,0,1,1
+    label: LimeNG sink
+    label0: USB
+    label1: XTRX
+    label2: 'null'
+    label3: ''
+    label4: ''
+    labels: '[]'
+    num_opts: '3'
+    option0: '0'
+    option1: '1'
+    option2: '2'
+    option3: '3'
+    option4: '4'
+    options: '[0, 1, 2]'
+    orient: Qt.QVBoxLayout
+    type: int
+    value: '2'
+    widget: combo_box
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1112, 20.0]
+    rotation: 0
+    state: enabled
+- name: NGsource
+  id: variable_qtgui_chooser
+  parameters:
+    comment: ''
+    gui_hint: 2,1,1,1
+    label: LimeNG source
+    label0: USB
+    label1: XTRX
+    label2: ''
+    label3: ''
+    label4: ''
+    labels: '[]'
+    num_opts: '2'
+    option0: '0'
+    option1: '1'
+    option2: '2'
+    option3: '3'
+    option4: '4'
+    options: '[0, 1, 2]'
+    orient: Qt.QVBoxLayout
+    type: int
+    value: '0'
+    widget: combo_box
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1256, 20.0]
+    rotation: 0
+    state: enabled
+- name: RXcarrier_freq
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: 1,1,1,1
+    label: RX frequency [MHz]
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '100'
+    step: '1'
+    stop: '1000'
+    value: '800.0'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [440, 16.0]
+    rotation: 0
+    state: enabled
+- name: RXgain
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: 1,3,1,1
+    label: Rx Gain [dB]
+    min_len: '70'
+    orient: QtCore.Qt.Horizontal
+    rangeType: int
+    start: '0'
+    step: '1'
+    stop: '52'
+    value: '10'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [696, 16.0]
+    rotation: 0
+    state: true
+- name: TXcarrier_freq
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: 1,0,1,1
+    label: TX frequency [MHz]
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '100'
+    step: '1'
+    stop: '1000'
+    value: '800.0'
+    widget: eng
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [296, 16.0]
+    rotation: 0
+    state: enabled
+- name: TXgain
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: 1,2,1,1
+    label: TX Gain [dB]
+    min_len: '70'
+    orient: QtCore.Qt.Horizontal
+    rangeType: int
+    start: '-12'
+    step: '1'
+    stop: '64'
+    value: '10'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [584, 16.0]
+    rotation: 0
+    state: true
+- name: bb_offset
+  id: variable_qtgui_entry
+  parameters:
+    comment: ''
+    entry_signal: editingFinished
+    gui_hint: 0,2,1,1
+    label: bb offset
+    type: real
+    value: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [808, 104.0]
+    rotation: 0
+    state: enabled
+- name: bbamp
+  id: variable_qtgui_entry
+  parameters:
+    comment: ''
+    entry_signal: editingFinished
+    gui_hint: 0,0,1,1
+    label: baseband amp.
+    type: real
+    value: '0.5'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [808, 16.0]
+    rotation: 0
+    state: enabled
+- name: bbfreq
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: 0,1,1,1
+    label: baseband frequency [MHz]
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '0'
+    step: '0.1'
+    stop: samp_rate/1e6
+    value: '0'
+    widget: counter
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [936, 16.0]
+    rotation: 0
+    state: enabled
+- name: samp_rate
+  id: variable
+  parameters:
+    comment: ''
+    value: 5e6
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [200, 12]
+    rotation: 0
+    state: enabled
+- name: analog_sig_source_x_0_1
+  id: analog_sig_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    amp: bbamp
+    comment: ''
+    freq: bbfreq*1e6
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    offset: bb_offset+bb_offset*1j
+    phase: '0'
+    samp_rate: samp_rate
+    showports: 'False'
+    type: complex
+    waveform: analog.GR_COS_WAVE
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [40, 328.0]
+    rotation: 0
+    state: enabled
+- name: blocks_null_sink_0
+  id: blocks_null_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    bus_structure_sink: '[[0,],]'
+    comment: ''
+    num_inputs: '1'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [584, 544.0]
+    rotation: 0
+    state: enabled
+- name: blocks_selector_0
+  id: blocks_selector
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    enabled: 'True'
+    input_index: NGsource
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '2'
+    num_outputs: '1'
+    output_index: '0'
+    showports: 'True'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1048, 336.0]
+    rotation: 0
+    state: enabled
+- name: blocks_selector_0_0
+  id: blocks_selector
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    enabled: 'True'
+    input_index: '0'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '1'
+    num_outputs: '3'
+    output_index: NGsink
+    showports: 'True'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [320, 336.0]
+    rotation: 0
+    state: enabled
+- name: limesuiteng_sdrdevice_sink_0_0
+  id: limesuiteng_sdrdevice_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    antenna: auto
+    channel_indexes: '[0]'
+    chip_index: '0'
+    comment: ''
+    custom_config_file: ''
+    data_format: fc32
+    deviceHandleHint: LimeSDR-USB
+    gain_generic: TXgain
+    lpf: 10e6
+    nco_offset: '0'
+    rf_freq: TXcarrier_freq*1e6
+    rf_oversampling: auto
+    sample_rate: samp_rate
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [584, 240.0]
+    rotation: 0
+    state: enabled
+- name: limesuiteng_sdrdevice_sink_0_0_0
+  id: limesuiteng_sdrdevice_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    antenna: auto
+    channel_indexes: '[0]'
+    chip_index: '0'
+    comment: ''
+    custom_config_file: ''
+    data_format: fc32
+    deviceHandleHint: LimeSDR XTRX
+    gain_generic: TXgain
+    lpf: 10e6
+    nco_offset: '0'
+    rf_freq: TXcarrier_freq*1e6
+    rf_oversampling: auto
+    sample_rate: samp_rate
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [584, 408.0]
+    rotation: 0
+    state: enabled
+- name: limesuiteng_sdrdevice_source_0
+  id: limesuiteng_sdrdevice_source
+  parameters:
+    affinity: ''
+    alias: ''
+    antenna: '''LNAW'''
+    channel_indexes: '[0]'
+    chip_index: '0'
+    comment: ''
+    custom_config_file: ''
+    data_format: fc32
+    deviceHandleHint: LimeSDR XTRX
+    gain_generic: RXgain
+    lms7002m_gain_lna: '0'
+    lms7002m_gain_pga: '0'
+    lms7002m_gain_tia: '-3'
+    lpf: LPF
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    nco_offset: '0.0'
+    override_lms7002m_rx_gains: Disabled
+    rf_freq: RXcarrier_freq*1e6
+    rf_oversampling: auto
+    sample_rate: samp_rate
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [776, 408.0]
+    rotation: 0
+    state: enabled
+- name: limesuiteng_sdrdevice_source_0_0
+  id: limesuiteng_sdrdevice_source
+  parameters:
+    affinity: ''
+    alias: ''
+    antenna: '''LNAW'''
+    channel_indexes: '[0]'
+    chip_index: '0'
+    comment: ''
+    custom_config_file: ''
+    data_format: fc32
+    deviceHandleHint: LimeSDR-USB
+    gain_generic: RXgain
+    lms7002m_gain_lna: '0'
+    lms7002m_gain_pga: '0'
+    lms7002m_gain_tia: '-3'
+    lpf: LPF
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    nco_offset: '0.0'
+    override_lms7002m_rx_gains: Disabled
+    rf_freq: RXcarrier_freq*1e6
+    rf_oversampling: auto
+    sample_rate: samp_rate
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [776, 240.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_freq_sink_x_0
+  id: qtgui_freq_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    average: '0.05'
+    axislabels: 'True'
+    bw: samp_rate
+    color1: '"blue"'
+    color10: '"dark blue"'
+    color2: '"red"'
+    color3: '"green"'
+    color4: '"black"'
+    color5: '"cyan"'
+    color6: '"magenta"'
+    color7: '"yellow"'
+    color8: '"dark red"'
+    color9: '"dark green"'
+    comment: ''
+    ctrlpanel: 'True'
+    fc: TXcarrier_freq*1e6
+    fftsize: '1024'
+    freqhalf: 'True'
+    grid: 'False'
+    gui_hint: 5,0,2,2
+    label: Relative Gain
+    label1: ''
+    label10: ''''''
+    label2: ''''''
+    label3: ''''''
+    label4: ''''''
+    label5: ''''''
+    label6: ''''''
+    label7: ''''''
+    label8: ''''''
+    label9: ''''''
+    legend: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: '""'
+    nconnections: '1'
+    norm_window: 'False'
+    showports: 'False'
+    tr_chan: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_tag: '""'
+    type: complex
+    units: dB
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    wintype: window.WIN_BLACKMAN_hARRIS
+    ymax: '10'
+    ymin: '-140'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [312, 504.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_freq_sink_x_1
+  id: qtgui_freq_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    average: '1.0'
+    axislabels: 'True'
+    bw: samp_rate
+    color1: '"blue"'
+    color10: '"dark blue"'
+    color2: '"red"'
+    color3: '"green"'
+    color4: '"black"'
+    color5: '"cyan"'
+    color6: '"magenta"'
+    color7: '"yellow"'
+    color8: '"dark red"'
+    color9: '"dark green"'
+    comment: ''
+    ctrlpanel: 'True'
+    fc: RXcarrier_freq*1e6
+    fftsize: '1024'
+    freqhalf: 'True'
+    grid: 'False'
+    gui_hint: 5,2,2,2
+    label: Relative Gain
+    label1: ''
+    label10: ''''''
+    label2: ''''''
+    label3: ''''''
+    label4: ''''''
+    label5: ''''''
+    label6: ''''''
+    label7: ''''''
+    label8: ''''''
+    label9: ''''''
+    legend: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: '""'
+    nconnections: '1'
+    norm_window: 'False'
+    showports: 'False'
+    tr_chan: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_tag: '""'
+    type: complex
+    units: dB
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    wintype: window.WIN_BLACKMAN_hARRIS
+    ymax: '10'
+    ymin: '-140'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1280, 400.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_time_sink_x_0
+  id: qtgui_time_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    axislabels: 'True'
+    color1: blue
+    color10: dark blue
+    color2: red
+    color3: green
+    color4: black
+    color5: cyan
+    color6: magenta
+    color7: yellow
+    color8: dark red
+    color9: dark green
+    comment: ''
+    ctrlpanel: 'True'
+    entags: 'True'
+    grid: 'False'
+    gui_hint: 3,0,2,2
+    label1: Signal 1
+    label10: Signal 10
+    label2: Signal 2
+    label3: Signal 3
+    label4: Signal 4
+    label5: Signal 5
+    label6: Signal 6
+    label7: Signal 7
+    label8: Signal 8
+    label9: Signal 9
+    legend: 'True'
+    marker1: '-1'
+    marker10: '-1'
+    marker2: '-1'
+    marker3: '-1'
+    marker4: '-1'
+    marker5: '-1'
+    marker6: '-1'
+    marker7: '-1'
+    marker8: '-1'
+    marker9: '-1'
+    name: '""'
+    nconnections: '1'
+    size: '1024'
+    srate: samp_rate
+    stemplot: 'False'
+    style1: '1'
+    style10: '1'
+    style2: '1'
+    style3: '1'
+    style4: '1'
+    style5: '1'
+    style6: '1'
+    style7: '1'
+    style8: '1'
+    style9: '1'
+    tr_chan: '0'
+    tr_delay: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_slope: qtgui.TRIG_SLOPE_POS
+    tr_tag: '""'
+    type: complex
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    ylabel: Amplitude
+    ymax: '1'
+    ymin: '-1'
+    yunit: '""'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [312, 608.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_time_sink_x_0_0
+  id: qtgui_time_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    axislabels: 'True'
+    color1: blue
+    color10: dark blue
+    color2: red
+    color3: green
+    color4: black
+    color5: cyan
+    color6: magenta
+    color7: yellow
+    color8: dark red
+    color9: dark green
+    comment: ''
+    ctrlpanel: 'True'
+    entags: 'False'
+    grid: 'False'
+    gui_hint: 3,2,2,2
+    label1: Signal 1
+    label10: Signal 10
+    label2: Signal 2
+    label3: Signal 3
+    label4: Signal 4
+    label5: Signal 5
+    label6: Signal 6
+    label7: Signal 7
+    label8: Signal 8
+    label9: Signal 9
+    legend: 'True'
+    marker1: '-1'
+    marker10: '-1'
+    marker2: '-1'
+    marker3: '-1'
+    marker4: '-1'
+    marker5: '-1'
+    marker6: '-1'
+    marker7: '-1'
+    marker8: '-1'
+    marker9: '-1'
+    name: '""'
+    nconnections: '1'
+    size: '1024'
+    srate: samp_rate
+    stemplot: 'False'
+    style1: '1'
+    style10: '1'
+    style2: '1'
+    style3: '1'
+    style4: '1'
+    style5: '1'
+    style6: '1'
+    style7: '1'
+    style8: '1'
+    style9: '1'
+    tr_chan: '0'
+    tr_delay: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_slope: qtgui.TRIG_SLOPE_POS
+    tr_tag: '""'
+    type: complex
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    ylabel: Amplitude
+    ymax: '1'
+    ymin: '-1'
+    yunit: '""'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1280, 304.0]
+    rotation: 0
+    state: enabled
+
+connections:
+- [analog_sig_source_x_0_1, '0', blocks_selector_0_0, '0']
+- [analog_sig_source_x_0_1, '0', qtgui_freq_sink_x_0, '0']
+- [analog_sig_source_x_0_1, '0', qtgui_time_sink_x_0, '0']
+- [blocks_selector_0, '0', qtgui_freq_sink_x_1, '0']
+- [blocks_selector_0, '0', qtgui_time_sink_x_0_0, '0']
+- [blocks_selector_0_0, '0', limesuiteng_sdrdevice_sink_0_0, '0']
+- [blocks_selector_0_0, '1', limesuiteng_sdrdevice_sink_0_0_0, '0']
+- [blocks_selector_0_0, '2', blocks_null_sink_0, '0']
+- [limesuiteng_sdrdevice_source_0, '0', blocks_selector_0, '1']
+- [limesuiteng_sdrdevice_source_0_0, '0', blocks_selector_0, '0']
+
+metadata:
+  file_format: 1
+  grc_version: 3.10.12.0
