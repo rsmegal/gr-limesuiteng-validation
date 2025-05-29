@@ -33,6 +33,36 @@ options:
     state: enabled
 
 blocks:
+- name: BBtype
+  id: variable_qtgui_chooser
+  parameters:
+    comment: ''
+    gui_hint: 0,3,1,1
+    label: Baseband signal type
+    label0: constant
+    label1: cosine
+    label2: sawtooth
+    label3: ''
+    label4: ''
+    labels: '[]'
+    num_opts: '3'
+    option0: '0'
+    option1: '1'
+    option2: '2'
+    option3: '3'
+    option4: '4'
+    options: '[0, 1, 2]'
+    orient: Qt.QVBoxLayout
+    type: int
+    value: '0'
+    widget: combo_box
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [16, 180.0]
+    rotation: 0
+    state: enabled
 - name: LPF
   id: variable
   parameters:
@@ -49,7 +79,7 @@ blocks:
   id: variable_qtgui_chooser
   parameters:
     comment: ''
-    gui_hint: 2,0,1,1
+    gui_hint: 3,0,1,1
     label: LimeNG sink
     label0: USB
     label1: XTRX
@@ -67,19 +97,19 @@ blocks:
     orient: Qt.QVBoxLayout
     type: int
     value: '2'
-    widget: combo_box
+    widget: radio_buttons
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1112, 20.0]
+    coordinate: [1368, 12.0]
     rotation: 0
     state: enabled
 - name: NGsource
   id: variable_qtgui_chooser
   parameters:
     comment: ''
-    gui_hint: 2,1,1,1
+    gui_hint: 3,1,1,1
     label: LimeNG source
     label0: USB
     label1: XTRX
@@ -97,19 +127,19 @@ blocks:
     orient: Qt.QVBoxLayout
     type: int
     value: '0'
-    widget: combo_box
+    widget: radio_buttons
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1256, 20.0]
+    coordinate: [1232, 12.0]
     rotation: 0
     state: enabled
 - name: RXcarrier_freq
   id: variable_qtgui_range
   parameters:
     comment: ''
-    gui_hint: 1,1,1,1
+    gui_hint: 2,0,1,1
     label: RX frequency [MHz]
     min_len: '200'
     orient: QtCore.Qt.Horizontal
@@ -123,28 +153,49 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [440, 16.0]
+    coordinate: [304, 160.0]
     rotation: 0
     state: enabled
-- name: RXgain
+- name: RXgainUSB
   id: variable_qtgui_range
   parameters:
     comment: ''
-    gui_hint: 1,3,1,1
-    label: Rx Gain [dB]
+    gui_hint: 2,2,1,1
+    label: USB Rx Gain [dB]
     min_len: '70'
     orient: QtCore.Qt.Horizontal
     rangeType: int
-    start: '0'
+    start: '-12'
     step: '1'
-    stop: '52'
-    value: '10'
+    stop: '61'
+    value: '20'
     widget: counter_slider
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [696, 16.0]
+    coordinate: [592, 160.0]
+    rotation: 0
+    state: true
+- name: RXgainXTRX
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: 2,1,1,1
+    label: XTRX Rx Gain [dB]
+    min_len: '70'
+    orient: QtCore.Qt.Horizontal
+    rangeType: int
+    start: '-12'
+    step: '1'
+    stop: '61'
+    value: '20'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [456, 160.0]
     rotation: 0
     state: true
 - name: TXcarrier_freq
@@ -168,27 +219,108 @@ blocks:
     coordinate: [296, 16.0]
     rotation: 0
     state: enabled
-- name: TXgain
+- name: TXgainUSB
   id: variable_qtgui_range
   parameters:
     comment: ''
     gui_hint: 1,2,1,1
-    label: TX Gain [dB]
+    label: USB TX Gain [dB]
     min_len: '70'
     orient: QtCore.Qt.Horizontal
     rangeType: int
-    start: '-12'
+    start: '0'
     step: '1'
-    stop: '64'
-    value: '10'
+    stop: '52'
+    value: '20'
     widget: counter_slider
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [584, 16.0]
+    coordinate: [592, 16.0]
     rotation: 0
     state: true
+- name: TXgainXTRX
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: 1,1,1,1
+    label: XTRX TX Gain [dB]
+    min_len: '70'
+    orient: QtCore.Qt.Horizontal
+    rangeType: int
+    start: '0'
+    step: '1'
+    stop: '52'
+    value: '20'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [440, 16.0]
+    rotation: 0
+    state: true
+- name: USB_sink_port
+  id: variable_qtgui_chooser
+  parameters:
+    comment: ''
+    gui_hint: 3,3,1,1
+    label: USB sink port
+    label0: Band1
+    label1: Band2
+    label2: ''
+    label3: ''
+    label4: ''
+    labels: '[]'
+    num_opts: '2'
+    option0: Band1
+    option1: Band2
+    option2: '2'
+    option3: '3'
+    option4: '4'
+    options: '[0, 1, 2]'
+    orient: Qt.QVBoxLayout
+    type: string
+    value: Band1
+    widget: radio_buttons
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [960, 12.0]
+    rotation: 0
+    state: enabled
+- name: XTRX_sink_port
+  id: variable_qtgui_chooser
+  parameters:
+    comment: ''
+    gui_hint: 3,2,1,1
+    label: XTRX sink port
+    label0: Band1
+    label1: Band2
+    label2: ''
+    label3: ''
+    label4: ''
+    labels: '[]'
+    num_opts: '2'
+    option0: Band1
+    option1: Band2
+    option2: '2'
+    option3: '3'
+    option4: '4'
+    options: '[0, 1, 2]'
+    orient: Qt.QVBoxLayout
+    type: string
+    value: Band2
+    widget: radio_buttons
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1096, 12.0]
+    rotation: 0
+    state: enabled
 - name: bb_offset
   id: variable_qtgui_entry
   parameters:
@@ -202,7 +334,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [808, 104.0]
+    coordinate: [856, 160.0]
     rotation: 0
     state: enabled
 - name: bbamp
@@ -218,7 +350,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [808, 16.0]
+    coordinate: [728, 160.0]
     rotation: 0
     state: enabled
 - name: bbfreq
@@ -239,7 +371,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [936, 16.0]
+    coordinate: [728, 16.0]
     rotation: 0
     state: enabled
 - name: samp_rate
@@ -269,12 +401,58 @@ blocks:
     samp_rate: samp_rate
     showports: 'False'
     type: complex
+    waveform: analog.GR_CONST_WAVE
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [16, 392.0]
+    rotation: 0
+    state: enabled
+- name: analog_sig_source_x_0_1_0
+  id: analog_sig_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    amp: bbamp
+    comment: ''
+    freq: bbfreq*1e6
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    offset: bb_offset+bb_offset*1j
+    phase: '0'
+    samp_rate: samp_rate
+    showports: 'False'
+    type: complex
     waveform: analog.GR_COS_WAVE
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [40, 328.0]
+    coordinate: [16, 528.0]
+    rotation: 0
+    state: enabled
+- name: analog_sig_source_x_0_1_1
+  id: analog_sig_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    amp: bbamp
+    comment: ''
+    freq: bbfreq*1e6
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    offset: bb_offset+bb_offset*1j
+    phase: '0'
+    samp_rate: samp_rate
+    showports: 'False'
+    type: complex
+    waveform: analog.GR_SAW_WAVE
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [16, 664.0]
     rotation: 0
     state: enabled
 - name: blocks_null_sink_0
@@ -291,7 +469,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [776, 560.0]
+    coordinate: [928, 688.0]
     rotation: 0
     state: enabled
 - name: blocks_selector_0
@@ -314,7 +492,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1048, 336.0]
+    coordinate: [1192, 424.0]
     rotation: 0
     state: enabled
 - name: blocks_selector_0_0
@@ -337,7 +515,30 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [320, 336.0]
+    coordinate: [496, 512.0]
+    rotation: 0
+    state: enabled
+- name: blocks_selector_0_1
+  id: blocks_selector
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    enabled: 'True'
+    input_index: BBtype
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '3'
+    num_outputs: '1'
+    output_index: '0'
+    showports: 'True'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [264, 512.0]
     rotation: 0
     state: enabled
 - name: blocks_throttle2_0
@@ -358,7 +559,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [584, 544.0]
+    coordinate: [736, 672.0]
     rotation: 0
     state: enabled
 - name: limesuiteng_sdrdevice_sink_0_0
@@ -366,14 +567,16 @@ blocks:
   parameters:
     affinity: ''
     alias: ''
-    antenna: auto
+    antenna: USB_sink_port
+    calibrate_dciq: Disabled
     channel_indexes: '[0]'
     chip_index: '0'
     comment: ''
     custom_config_file: ''
     data_format: fc32
     deviceHandleHint: LimeSDR-USB
-    gain_generic: TXgain
+    gain_generic: TXgainUSB
+    gfir_bandwidth: '0'
     lpf: 10e6
     nco_offset: '0'
     rf_freq: TXcarrier_freq*1e6
@@ -383,7 +586,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [584, 240.0]
+    coordinate: [736, 344.0]
     rotation: 0
     state: enabled
 - name: limesuiteng_sdrdevice_sink_0_0_0
@@ -391,14 +594,16 @@ blocks:
   parameters:
     affinity: ''
     alias: ''
-    antenna: auto
+    antenna: XTRX_sink_port
+    calibrate_dciq: Disabled
     channel_indexes: '[0]'
     chip_index: '0'
     comment: ''
     custom_config_file: ''
     data_format: fc32
     deviceHandleHint: LimeSDR XTRX
-    gain_generic: TXgain
+    gain_generic: TXgainXTRX
+    gfir_bandwidth: '0'
     lpf: 10e6
     nco_offset: '0'
     rf_freq: TXcarrier_freq*1e6
@@ -408,7 +613,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [584, 408.0]
+    coordinate: [736, 504.0]
     rotation: 0
     state: enabled
 - name: limesuiteng_sdrdevice_source_0
@@ -417,13 +622,15 @@ blocks:
     affinity: ''
     alias: ''
     antenna: '''LNAW'''
+    calibrate_dciq: Disabled
     channel_indexes: '[0]'
     chip_index: '0'
     comment: ''
     custom_config_file: ''
     data_format: fc32
     deviceHandleHint: LimeSDR XTRX
-    gain_generic: RXgain
+    gain_generic: RXgainXTRX
+    gfir_bandwidth: '0'
     lms7002m_gain_lna: '0'
     lms7002m_gain_pga: '0'
     lms7002m_gain_tia: '-3'
@@ -439,7 +646,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [776, 408.0]
+    coordinate: [928, 504.0]
     rotation: 0
     state: enabled
 - name: limesuiteng_sdrdevice_source_0_0
@@ -448,13 +655,15 @@ blocks:
     affinity: ''
     alias: ''
     antenna: '''LNAW'''
+    calibrate_dciq: Disabled
     channel_indexes: '[0]'
     chip_index: '0'
     comment: ''
     custom_config_file: ''
     data_format: fc32
     deviceHandleHint: LimeSDR-USB
-    gain_generic: RXgain
+    gain_generic: RXgainUSB
+    gfir_bandwidth: '0'
     lms7002m_gain_lna: '0'
     lms7002m_gain_pga: '0'
     lms7002m_gain_tia: '-3'
@@ -470,7 +679,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [776, 240.0]
+    coordinate: [928, 344.0]
     rotation: 0
     state: enabled
 - name: qtgui_freq_sink_x_0
@@ -508,7 +717,7 @@ blocks:
     fftsize: '1024'
     freqhalf: 'True'
     grid: 'False'
-    gui_hint: 5,0,2,2
+    gui_hint: 6,0,2,2
     label: Relative Gain
     label1: ''
     label10: ''''''
@@ -551,7 +760,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [312, 504.0]
+    coordinate: [496, 424.0]
     rotation: 0
     state: enabled
 - name: qtgui_freq_sink_x_1
@@ -589,7 +798,7 @@ blocks:
     fftsize: '1024'
     freqhalf: 'True'
     grid: 'False'
-    gui_hint: 5,2,2,2
+    gui_hint: 6,2,2,2
     label: Relative Gain
     label1: ''
     label10: ''''''
@@ -632,7 +841,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1280, 400.0]
+    coordinate: [1424, 496.0]
     rotation: 0
     state: enabled
 - name: qtgui_time_sink_x_0
@@ -666,7 +875,7 @@ blocks:
     ctrlpanel: 'True'
     entags: 'True'
     grid: 'False'
-    gui_hint: 3,0,2,2
+    gui_hint: 4,0,2,2
     label1: Signal 1
     label10: Signal 10
     label2: Signal 2
@@ -729,7 +938,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [312, 608.0]
+    coordinate: [496, 640.0]
     rotation: 0
     state: enabled
 - name: qtgui_time_sink_x_0_0
@@ -763,7 +972,7 @@ blocks:
     ctrlpanel: 'True'
     entags: 'False'
     grid: 'False'
-    gui_hint: 3,2,2,2
+    gui_hint: 4,2,2,2
     label1: Signal 1
     label10: Signal 10
     label2: Signal 2
@@ -826,19 +1035,22 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1280, 304.0]
+    coordinate: [1424, 392.0]
     rotation: 0
     state: enabled
 
 connections:
-- [analog_sig_source_x_0_1, '0', blocks_selector_0_0, '0']
-- [analog_sig_source_x_0_1, '0', qtgui_freq_sink_x_0, '0']
-- [analog_sig_source_x_0_1, '0', qtgui_time_sink_x_0, '0']
+- [analog_sig_source_x_0_1, '0', blocks_selector_0_1, '0']
+- [analog_sig_source_x_0_1_0, '0', blocks_selector_0_1, '1']
+- [analog_sig_source_x_0_1_1, '0', blocks_selector_0_1, '2']
 - [blocks_selector_0, '0', qtgui_freq_sink_x_1, '0']
 - [blocks_selector_0, '0', qtgui_time_sink_x_0_0, '0']
 - [blocks_selector_0_0, '0', limesuiteng_sdrdevice_sink_0_0, '0']
 - [blocks_selector_0_0, '1', limesuiteng_sdrdevice_sink_0_0_0, '0']
 - [blocks_selector_0_0, '2', blocks_throttle2_0, '0']
+- [blocks_selector_0_1, '0', blocks_selector_0_0, '0']
+- [blocks_selector_0_1, '0', qtgui_freq_sink_x_0, '0']
+- [blocks_selector_0_1, '0', qtgui_time_sink_x_0, '0']
 - [blocks_throttle2_0, '0', blocks_null_sink_0, '0']
 - [limesuiteng_sdrdevice_source_0, '0', blocks_selector_0, '1']
 - [limesuiteng_sdrdevice_source_0_0, '0', blocks_selector_0, '0']
